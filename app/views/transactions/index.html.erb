@@ -1,7 +1,17 @@
 <h1>KelloggCoin Ledger</h1>
+<p>Test</p>
 
 <!-- Step 1: List all transactions, starting with the ICO -->
 
+<ol>
+<%
+    transactions = Transaction.all
+    for transaction in transactions
+        to_user = User.find_by({"id" => transaction["to_user_id"]})
+        from_user = User.find_by({"id" => transaction["from_user_id"]})%>
+        <li> <%="#{transaction["amount"]} KC from #{if from_user then from_user.name else "Initial Coin Offering" end} to #{to_user["name"]}"%></li>
+    <%end%>
+</ol>
 <!-- Step 2: Calculate and display the balances -->
 
 <!-- 
